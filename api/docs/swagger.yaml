@@ -1,0 +1,590 @@
+definitions:
+  models.Actor:
+    properties:
+      actor_id:
+        type: string
+      created_at:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.Category:
+    properties:
+      category_id:
+        type: string
+      created_at:
+        type: string
+      name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.CreateActor:
+    properties:
+      first_name:
+        type: string
+      last_name:
+        type: string
+    type: object
+  models.CreateCategory:
+    properties:
+      name:
+        type: string
+    type: object
+  models.CreateFilm:
+    properties:
+      description:
+        type: string
+      duration:
+        type: integer
+      release_year:
+        type: string
+      title:
+        type: string
+    type: object
+  models.Film:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      duration:
+        type: integer
+      film_id:
+        type: string
+      release_year:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.GetListActorResponse:
+    properties:
+      actors:
+        items:
+          $ref: '#/definitions/models.Actor'
+        type: array
+      count:
+        type: integer
+    type: object
+  models.GetListCategoryResponse:
+    properties:
+      categorys:
+        items:
+          $ref: '#/definitions/models.Category'
+        type: array
+      count:
+        type: integer
+    type: object
+  models.GetListFilmResponse:
+    properties:
+      count:
+        type: integer
+      films:
+        items:
+          $ref: '#/definitions/models.Film'
+        type: array
+    type: object
+  models.UpdateActor:
+    properties:
+      first_name:
+        type: string
+      last_name:
+        type: string
+    type: object
+  models.UpdateCategory:
+    properties:
+      name:
+        type: string
+    type: object
+  models.UpdateFilm:
+    properties:
+      description:
+        type: string
+      duration:
+        type: integer
+      release_year:
+        type: string
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /actor:
+    get:
+      consumes:
+      - application/json
+      description: Get List Actor
+      operationId: get_list_actor
+      parameters:
+      - description: offset
+        in: query
+        name: offset
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: GetActorBody
+          schema:
+            $ref: '#/definitions/models.GetListActorResponse'
+        "400":
+          description: Invalid Argument
+          schema:
+            type: string
+        "500":
+          description: Server Error
+          schema:
+            type: string
+      summary: Get List Actor
+      tags:
+      - Actor
+    post:
+      consumes:
+      - application/json
+      description: Create Actor
+      operationId: create_actor
+      parameters:
+      - description: CreateActorRequestBody
+        in: body
+        name: actor
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateActor'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: GetactorBody
+          schema:
+            $ref: '#/definitions/models.Actor'
+        "400":
+          description: Invalid Argument
+          schema:
+            type: string
+        "500":
+          description: Server Error
+          schema:
+            type: string
+      summary: Create Actor
+      tags:
+      - Actor
+  /actor/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete By Id Actor
+      operationId: delete_by_id_actor
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: GetActorBody
+          schema:
+            $ref: '#/definitions/models.Actor'
+        "400":
+          description: Invalid Argument
+          schema:
+            type: string
+        "500":
+          description: Server Error
+          schema:
+            type: string
+      summary: Delete By Id Actor
+      tags:
+      - Actor
+    get:
+      consumes:
+      - application/json
+      description: Get By Id Actor
+      operationId: get_by_id_actor
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: GetActorBody
+          schema:
+            $ref: '#/definitions/models.Actor'
+        "400":
+          description: Invalid Argument
+          schema:
+            type: string
+        "500":
+          description: Server Error
+          schema:
+            type: string
+      summary: Get By Id Actor
+      tags:
+      - Actor
+    put:
+      consumes:
+      - application/json
+      description: Update Actor
+      operationId: update_actor
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: CreateActorRequestBody
+        in: body
+        name: actor
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateActor'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: GetactorsBody
+          schema:
+            $ref: '#/definitions/models.Actor'
+        "400":
+          description: Invalid Argument
+          schema:
+            type: string
+        "500":
+          description: Server Error
+          schema:
+            type: string
+      summary: Update Actor
+      tags:
+      - Actor
+  /category:
+    get:
+      consumes:
+      - application/json
+      description: Get List Category
+      operationId: get_list_category
+      parameters:
+      - description: offset
+        in: query
+        name: offset
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: GetCategoryBody
+          schema:
+            $ref: '#/definitions/models.GetListCategoryResponse'
+        "400":
+          description: Invalid Argument
+          schema:
+            type: string
+        "500":
+          description: Server Error
+          schema:
+            type: string
+      summary: Get List Category
+      tags:
+      - Category
+    post:
+      consumes:
+      - application/json
+      description: Create Category
+      operationId: create_category
+      parameters:
+      - description: CreateCategoryRequestBody
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateCategory'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: GetCategoryBody
+          schema:
+            $ref: '#/definitions/models.Category'
+        "400":
+          description: Invalid Argument
+          schema:
+            type: string
+        "500":
+          description: Server Error
+          schema:
+            type: string
+      summary: Create Category
+      tags:
+      - Category
+  /category/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete By Id Category
+      operationId: delete_by_id_category
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: GetCategoryBody
+          schema:
+            $ref: '#/definitions/models.Category'
+        "400":
+          description: Invalid Argument
+          schema:
+            type: string
+        "500":
+          description: Server Error
+          schema:
+            type: string
+      summary: Delete By Id Category
+      tags:
+      - Category
+    get:
+      consumes:
+      - application/json
+      description: Get By Id Category
+      operationId: get_by_id_category
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: GetCategoryBody
+          schema:
+            $ref: '#/definitions/models.Category'
+        "400":
+          description: Invalid Argument
+          schema:
+            type: string
+        "500":
+          description: Server Error
+          schema:
+            type: string
+      summary: Get By Id Category
+      tags:
+      - Category
+    put:
+      consumes:
+      - application/json
+      description: Update Category
+      operationId: update_category
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: CreateCategoryRequestBody
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateCategory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: GetCategorysBody
+          schema:
+            $ref: '#/definitions/models.Category'
+        "400":
+          description: Invalid Argument
+          schema:
+            type: string
+        "500":
+          description: Server Error
+          schema:
+            type: string
+      summary: Update Category
+      tags:
+      - Category
+  /film:
+    get:
+      consumes:
+      - application/json
+      description: Get List Film
+      operationId: get_list_film
+      parameters:
+      - description: offset
+        in: query
+        name: offset
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: GetFilmBody
+          schema:
+            $ref: '#/definitions/models.GetListFilmResponse'
+        "400":
+          description: Invalid Argument
+          schema:
+            type: string
+        "500":
+          description: Server Error
+          schema:
+            type: string
+      summary: Get List Film
+      tags:
+      - Film
+    post:
+      consumes:
+      - application/json
+      description: Create Film
+      operationId: create_film
+      parameters:
+      - description: CreateFilmRequestBody
+        in: body
+        name: film
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateFilm'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: GetFilmBody
+          schema:
+            $ref: '#/definitions/models.Film'
+        "400":
+          description: Invalid Argument
+          schema:
+            type: string
+        "500":
+          description: Server Error
+          schema:
+            type: string
+      summary: Create Film
+      tags:
+      - Film
+  /film/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete By Id Film
+      operationId: delete_by_id_film
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: GetFilmBody
+          schema:
+            $ref: '#/definitions/models.Film'
+        "400":
+          description: Invalid Argument
+          schema:
+            type: string
+        "500":
+          description: Server Error
+          schema:
+            type: string
+      summary: Delete By Id Film
+      tags:
+      - Film
+    get:
+      consumes:
+      - application/json
+      description: Get By Id Film
+      operationId: get_by_id_film
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: GetFilmBody
+          schema:
+            $ref: '#/definitions/models.Film'
+        "400":
+          description: Invalid Argument
+          schema:
+            type: string
+        "500":
+          description: Server Error
+          schema:
+            type: string
+      summary: Get By Id Film
+      tags:
+      - Film
+    put:
+      consumes:
+      - application/json
+      description: Update Film
+      operationId: update_film
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: CreateFilmRequestBody
+        in: body
+        name: film
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateFilm'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: GetFilmsBody
+          schema:
+            $ref: '#/definitions/models.Film'
+        "400":
+          description: Invalid Argument
+          schema:
+            type: string
+        "500":
+          description: Server Error
+          schema:
+            type: string
+      summary: Update Film
+      tags:
+      - Film
+swagger: "2.0"
